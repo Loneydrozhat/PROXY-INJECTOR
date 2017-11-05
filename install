@@ -38,9 +38,12 @@ echo -e "\033[01;32m
 fi
 rm /usr/local/bin/socks
 rm /bin/socks
-wget -qO- https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh > /usr/local/bin/socks
-wget -qO- https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh > /usr/bin/socks
+wget  https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh > /dev/null
+mv proxy-injector.sh /usr/local/bin/socks
+wget  https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh > /dev/null
+mv proxy-injector.sh /bin/socks
 chmod +x /usr/local/bin/socks
+chmod +x /bin/socks
 echo -e "\033[01;32m 
   ;; INICIANDO A CONFIGURAÇAO ;; "
   sleep 2
