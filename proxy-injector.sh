@@ -1,5 +1,6 @@
-
 #!/bin/bash
+clear
+clear
 versao=3.9
 clear
 op() {
@@ -110,7 +111,7 @@ fi
 banner () {
 echo -e "
 
-\033[01;36mSCRIPT PROXY-INJECTOR , DESENVOLVIDO POR \033[01;31m@GlEmYsSoN \033[01;36m , EDITADO POR \033[01;31m@FENIX LINUX \033[01;36m
+\033[01;36mSCRIPT PROXY-INJECTOR , DESENVOLVIDO POR \033[01;31m@GlEmYsSoN \033[01;36m , EDITADO POR \033[01;31m@FENIX_LINUX \033[01;36m
 O SCRIPT E UM SISTEMA PARA INSTALAÇAO E EXECUÇAO DO MODELO 
 \033[01;31mHTTP SOCKS PROXY \033[01;36m ,, SENDO ASSIM AS PAYLOADS NORMAIS \033[01;31m COM HOST
 \033[01;36mNAO IRAO FUNCIONAR , APENAS AS SOCKET [...]" 
@@ -131,6 +132,9 @@ banner
 main () {
 veri_443
 statusproxy2
+echo -e ""
+echo -e "\033[01;35m ESCOLHA UMA OPÇAO [01-09] \033[0m"
+
 echo -e "$b======================[$v"Menu"$b]========================"
 op 01 "\033[01;37;42m ALTERAR MENSAGEM DE ERRO                       " "\033[0m" $(echo -e "$b($v"403 Erro"$b)")           
 op 02 "\033[01;37;42m ALTERAR MENSAGEM DE SUCESSO                    " "\033[0m" $(echo -e "$b($v"200 Ok"$b)")         
@@ -142,8 +146,9 @@ op 07 "\033[01;37;42m MONITOR SSH                                    "          
 op 08 "\033[01;37;42m MAIS OPCOES                                    "                                      "\033[0m"
 op 09 "\033[01;37;42m SAIR                                           "                                      "\033[0m"                                                                                              
 echo -e "$b======================[$v"Menu"$b]========================"
-echo -e "\033[01;0m"
-read -p "Escolha uma opcao: " option
+echo -e "\033[01;37;36m"
+read -p "Escolha uma opcao : " option
+echo -e "\033[0m"
  while [ "$option" != 01 -o "$option" != 1 -o "$option" != 02 -o "$option" != 2 -o "$option" != 03 -o "$option" != 3 -o "$option" != 04 -o "$option" != 4 -o "$option" != 05 -o "$option" != 5 -o "$option" != 06 -o "$option" != 6 -o "$option" != 07 -o "$option" != 7 -o "$option" != 08 -o "$option" != 8 -o "$option" != 09 -o "$option" != 09 ]
  do
    if [[ $option = 01 ||$option = 1 ||$option = 02 ||$option = 2 ||$option = 03 ||$option = 3 ||$option = 04 ||$option = 4 ||$option = 05 ||$option = 5 ||$option = 06 ||$option = 6 ||$option = 07 ||$option = 7 ||$option = 08 ||$option = 8 ||$option = 09 ||$option = 09 ]]; then
@@ -185,6 +190,7 @@ echo -e "$b=============[$v"MENSAGEM SUCESSO"$b]=============="
   echo -e "Proxy-socks ativo nas portas: 8080,80,3128,8799"
   echo -e "Pronto, proxy-socks estÃ¡ com a mensagem de sucesso $msg1"
   read -p 'Enter continuar...'  enter
+  clear
   main
 fi
 if [[ "$option" = "03" || "$option" = "3" ]]; then
@@ -195,6 +201,7 @@ echo -e "$b================[$v"PARAR SOCKS"$b]================="
    kill -9 $pidproxy 1>/dev/null 2>/dev/null
    echo -e "Proxy-socks parado"
    read -p 'Enter continuar...'  enter
+   clear
    main
  else
   echo -e "$b==============[$v"INICIAR SOCKS"$b]================="
@@ -207,6 +214,7 @@ echo -e "$b================[$v"PARAR SOCKS"$b]================="
    sleep 1
    echo -e "Proxy-socks iniciado"
    read -p 'Enter continuar...'  enter
+   clear
    main
   fi
 fi
@@ -232,6 +240,7 @@ fi
 echo -e "$b-----------------------------------------------"
 done
 read -p "Enter continuar..." enter
+clear
 main
 fi
  if [[ "$option" = 05 || "$option" = 5 ]]; then
@@ -258,7 +267,8 @@ fi
      echo -e "\033[93mSenha: $v$senha"
      echo -e "\033[93mData: $v$validadebr$b"
      echo "$nome:$senha:$validadebr" > /etc/proxy-socks/info-users/$nome
-     read -p "Enter continuar..." enter
+     read -p "Enter continuar..." enter 
+     clear
      main
  fi
  if [[ "$option" = 06 || "$option" = 6 ]]; then
@@ -311,6 +321,7 @@ pids=$(ps -u $us 1>/dev/null 2>/dev/null |awk {'print $1'})
  userdel -f $us 1>/dev/null 2>/dev/null
 echo -e "Usuario \033[1;32m$us\033[1;37m Deletado"
 read -p "Enter continuar..."
+clear
 user_del
 else
 echo -n -e "\033[1;37mDeletar: ";read del
@@ -339,12 +350,14 @@ echo -e "$b-----------------------------------------------"
 done
 
 read -p "Enter continuar..." enter
+clear
  main
  fi
  
   if [[ "$option" = 08 || "$option" = 9 ]]; then
      echo -e "EstÃ¡ opcao estara disponivel na v3 desse script"
      read -p "Enter continuar..." enter
+     clear
      main
    fi
 
