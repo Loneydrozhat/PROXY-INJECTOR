@@ -1,4 +1,3 @@
-
 #!/bin/bash
 # OpenVPN road warrior installer for Debian, Ubuntu and CentOS
 
