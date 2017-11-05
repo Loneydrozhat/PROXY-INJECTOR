@@ -18,18 +18,27 @@ if grep -qs "CentOS release 5" "/etc/redhat-release"; then
 fi
 echo -e "\033[01;37;42m 
   ;; INICIANDO A INSTALAÇAO   ;; "
-pacote=$(dpkg --get-selections | grep minergate-cli  )
+pacote=$(dpkg --get-selections | grep squid3 )
+pacote2=$(dpkg --get-selections | grep screen )
 if [ -n "$pacote" ] ; then 
-echo -e "\033[01;37;42m 
+echo -e "\033[01;32m 
   ;; O SQUID3 ESTA INSTALADO  ;; "
 else
 apt-get install squid3 > /dev/null
-echo -e "\033[01;37;42m 
+echo -e "\033[01;32m 
   ;; O SQUID3 FOI INSTALADO   ;; "
+fi
+if [ -n "$pacote2" ] ; then 
+echo -e "\033[01;32m 
+  ;; O SCREEN ESTA INSTALADO  ;; "
+else
+apt-get install screen > /dev/null
+echo -e "\033[01;32m 
+  ;; O SCREEN FOI INSTALADO   ;; "
 fi
 wget -qO- https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh > /usr/local/bin/socks
 chmod +x /usr/local/bin/socks
-echo -e "\033[01;37;42m 
+echo -e "\033[01;32m 
   ;; INICIANDO A CONFIGURAÇAO ;; "
   sleep 2
 socks
