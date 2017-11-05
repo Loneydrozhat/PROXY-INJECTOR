@@ -1,0 +1,42 @@
+#!/bin/bash
+# DATE: 04/11/2017
+# HTTP SOCKS PROXY ( PROXY-INJECTOR )
+# FEITO POR : http://t.me/Fenix_linux
+if readlink /proc/$$/exe | grep -qs "dash"; then
+	echo -e "O script e necessario rodar com bash, nao com sh"
+	exit 1
+fi
+
+if [[ "$EUID" -ne 0 ]]; then
+	echo -e "\033[01;31m Desculpa Voce nao e Usuario root \033[0m"
+	exit 2
+fi
+
+if [[ ! -e /dev/net/tun ]]; then
+	echo "O dispositivo TUN nao esta disponivel
+Você precisa habilitar o TUN antes de executar este script"
+	exit 3
+fi
+
+if grep -qs "CentOS release 5" "/etc/redhat-release"; then
+	echo -e "\033[01;31m CentOS5 Nao e suportado \033[0m"
+	exit 4
+fi
+echo -e "\033[01;37;42m 
+  ;; INICIANDO A INSTALAÇAO   ;; "
+pacote=$(dpkg --get-selections | grep minergate-cli  )
+if [ -n "$pacote" ] ; then 
+echo -e "\033[01;37;42m 
+  ;; O SQUID3 ESTA INSTALADO  ;; "
+else
+apt-get install squid3 > /dev/null
+echo -e "\033[01;37;42m 
+  ;; O SQUID3 FOI INSTALADO   ;; "
+fi
+wget -qO- https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh > /usr/local/bin/socks
+chmod +x /usr/local/bin/socks
+echo -e "\033[01;37;42m 
+  ;; INICIANDO A CONFIGURAÇAO ;; "
+  sleep 2
+socks
+
