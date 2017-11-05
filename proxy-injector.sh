@@ -1,4 +1,3 @@
-
 #!/bin/bash
 versao=3.9
 clear
@@ -134,9 +133,8 @@ op 04 VER USUARIOS CRIADOS
 op 05 CRIAR USUARIOS
 op 06 DELETAR USUARIOS
 op 07 MONITOR SSH
-op 08 REMOVED ( removida )
-op 09 MAIS OPCOES
-op 10 SAIR
+op 08 MAIS OPCOES
+op 09 SAIR
 echo -e "$b===================[$v"Menu"$b]===================="
 read -p "Escolha uma opcao: " option
  while [ "$option" != 01 -o "$option" != 1 -o "$option" != 02 -o "$option" != 2 -o "$option" != 03 -o "$option" != 3 -o "$option" != 04 -o "$option" != 4 -o "$option" != 05 -o "$option" != 5 -o "$option" != 06 -o "$option" != 6 -o "$option" != 07 -o "$option" != 7 -o "$option" != 08 -o "$option" != 8 -o "$option" != 09 -o "$option" != 09 ]
