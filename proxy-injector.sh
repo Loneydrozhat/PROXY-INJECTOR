@@ -51,7 +51,7 @@ if [[ -d /etc/proxy-socks ]]; then
  apt-get update 1>/dev/null 2>/dev/null
   wget -qO- /dev/null https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy.py > /etc/proxy-socks/proxy.py
   sleep 1
-IP=$(wget -qO- http://glemyson.hol.es)
+IP=$(wget -4qO- "http://whatismyip.akamai.com/")
 read -p "Confirme seu IP: " -e -i $IP IP
 if [[ -z "$IP" ]];then
 echo -e "IP invalido"
@@ -72,8 +72,8 @@ else
 echo -e "Instalando proxy-socks..."
 apt-get update 1>/dev/null 2>/dev/null
 mkdir /etc/proxy-socks
-wget -qO- /dev/null http://glemysson-ssh.hol.es/proxy.py > /etc/proxy-socks/proxy.py
-IP=$(wget -qO- http://glemyson.hol.es)
+wget -qO- /dev/null https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy.py> /etc/proxy-socks/proxy.py
+IP=$(wget -4qO- "http://whatismyip.akamai.com/")
 read -p "Confirme seu IP: " -e -i $IP IP
 if [[ -z "$IP" ]];then
 echo -e "IP invalido"
