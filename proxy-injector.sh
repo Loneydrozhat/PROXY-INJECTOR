@@ -1,3 +1,4 @@
+
 #!/bin/bash
 versao=3.9
 clear
@@ -107,13 +108,19 @@ if cat /etc/ssh/sshd_config|grep "Port 443" 1>/dev/null; then
 fi
 }
 banner () {
+echo -e "
+
+\033[01;36mSCRIPT PROXY-INJECTOR , DESENVOLVIDO POR \033[01;31m@GlEmYsSoN \033[01;36m , EDITADO POR \033[01;31m@FENIX LINUX \033[01;36m
+O SCRIPT E UM SISTEMA PARA INSTALAÇAO E EXECUÇAO DO MODELO 
+\033[01;31mHTTP SOCKS PROXY \033[01;36m ,, SENDO ASSIM AS PAYLOADS NORMAIS \033[01;31m COM HOST
+\033[01;36mNAO IRAO FUNCIONAR , APENAS AS SOCKET [...]" 
 echo -e "$v
         ____   ___   ____ _  ______  $Ver""V2$v
        / ___| / _ \ / ___| |/ / ___| 
        \___ \| | | | |   |  /\___  \ 
         ___) | |_| | |___| . \ ___) |
        |____/ \___/ \____|_|\_\____/
-$Ver              By: @GlEmYsSoN$b EDITED:@FENIX_LINUX"
+$Ver              By: @GlEmYsSoN$b"
 }
 banner
    if [[ -d /etc/proxy-socks/info-users ]]; then
@@ -123,19 +130,19 @@ banner
     fi
 main () {
 veri_443
-veri_att
 statusproxy2
-echo -e "$b===================[$v"Menu"$b]===================="
-op 01 \033[01;37;41m ALTERAR MENSAGEM DE ERRO \033[0m $(echo -e "$b($v"403 Erro"$b)")
-op 02 ALTERAR MENSAGEM DE SUCESSO $(echo -e "$b($v"200 Ok"$b)")
-op 03 PARAR/INICIAR PROXY-SOCKS $(echo -e "$b($v$statusproxy$b)")
-op 04 VER USUARIOS CRIADOS
-op 05 CRIAR USUARIOS
-op 06 DELETAR USUARIOS
-op 07 MONITOR SSH
-op 08 MAIS OPCOES
-op 09 SAIR
-echo -e "$b===================[$v"Menu"$b]===================="
+echo -e "$b======================[$v"Menu"$b]========================"
+op 01 "\033[01;37;42m ALTERAR MENSAGEM DE ERRO                       " "\033[0m" $(echo -e "$b($v"403 Erro"$b)")           
+op 02 "\033[01;37;42m ALTERAR MENSAGEM DE SUCESSO                    " "\033[0m" $(echo -e "$b($v"200 Ok"$b)")         
+op 03 "\033[01;37;42m PARAR/INICIAR PROXY-SOCKS                      " "\033[0m" $(echo -e "$b($v$statusproxy$b)")       
+op 04 "\033[01;37;42m VER USUARIOS CRIADO                            "                                      "\033[0m"
+op 05 "\033[01;37;42m CRIAR USUARIOS                                 "                                      "\033[0m"
+op 06 "\033[01;37;42m DELETAR USUARIOS                               "                                      "\033[0m"
+op 07 "\033[01;37;42m MONITOR SSH                                    "                                      "\033[0m"
+op 08 "\033[01;37;42m MAIS OPCOES                                    "                                      "\033[0m"
+op 09 "\033[01;37;42m SAIR                                           "                                      "\033[0m"                                                                                              
+echo -e "$b======================[$v"Menu"$b]========================"
+echo -e "\033[01;0m"
 read -p "Escolha uma opcao: " option
  while [ "$option" != 01 -o "$option" != 1 -o "$option" != 02 -o "$option" != 2 -o "$option" != 03 -o "$option" != 3 -o "$option" != 04 -o "$option" != 4 -o "$option" != 05 -o "$option" != 5 -o "$option" != 06 -o "$option" != 6 -o "$option" != 07 -o "$option" != 7 -o "$option" != 08 -o "$option" != 8 -o "$option" != 09 -o "$option" != 09 ]
  do
