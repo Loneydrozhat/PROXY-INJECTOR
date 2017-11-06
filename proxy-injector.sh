@@ -1,3 +1,4 @@
+
 #!/bin/bash
 clear
 clear
@@ -48,26 +49,32 @@ if [[ -d /etc/proxy-socks ]]; then
  if [[ -f /etc/proxy-socks/proxy.py ]]; then
   true
  else
- echo -e "Instalando proxy-socks..."
+ echo -e "\033[01;32m ✔ Instalando proxy-socks..."
  apt-get update 1>/dev/null 2>/dev/null
   wget -qO- /dev/null https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy.py > /etc/proxy-socks/proxy.py
   sleep 1
 IP=$(wget -4qO- "http://whatismyip.akamai.com/")
+echo -e "\033[01;32m"
 read -p "Confirme seu IP: " -e -i $IP IP
+echo -e "\033[0m"
 if [[ -z "$IP" ]];then
 echo -e "IP invalido"
 sleep 1
+echo -e "\033[01;32m"
 read -p "Digite seu IP: " IP
+echo -e "\033[0m"
 fi
 IPPRO=$(cat /etc/proxy-socks/proxy.py|grep "server =" | awk {'print $3'})
 sed -i "s/server = $IPPRO/server = '$IP'/" /etc/proxy-socks/proxy.py
 sleep 1
+echo -e "\033[01;32m"
 echo -e "Iniciando proxy-socks..."
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 80
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 8080
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 8799 
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 3128 
-echo -e "Proxy-socks ativo nas portas: 8080,80,3128,8799"
+echo -e "Proxy-socks ativo nas portas: /033[01;31m  8080,80,3128,8799"
+echo -e "\033[0m"
  fi
 else
 echo -e "Instalando proxy-socks..."
@@ -109,19 +116,17 @@ if cat /etc/ssh/sshd_config|grep "Port 443" 1>/dev/null; then
 fi
 }
 banner () {
-echo -e "
+echo -e "\033[01;36m
 
-\033[01;36mSCRIPT PROXY-INJECTOR , DESENVOLVIDO POR \033[01;31m@GlEmYsSoN \033[01;36m , EDITADO POR \033[01;31m@FENIX_LINUX \033[01;36m
-O SCRIPT E UM SISTEMA PARA INSTALAÇAO E EXECUÇAO DO MODELO 
-\033[01;31mHTTP SOCKS PROXY \033[01;36m ,, SENDO ASSIM AS PAYLOADS NORMAIS \033[01;31m COM HOST
-\033[01;36mNAO IRAO FUNCIONAR , APENAS AS SOCKET [...]" 
-echo -e "$v
-        ____   ___   ____ _  ______  $Ver""V2$v
-       / ___| / _ \ / ___| |/ / ___| 
-       \___ \| | | | |   |  /\___  \ 
-        ___) | |_| | |___| . \ ___) |
-       |____/ \___/ \____|_|\_\____/
-$Ver              By: @GlEmYsSoN$b"
+ _   __   _       _   _____   _____   _____  
+| | |  \ | |     | | | ____| /  ___| |_   _| 
+| | |   \| |     | | | |__   | |       | |   
+| | | |\   |  _  | | |  __|  | |       | |   
+| | | | \  | | |_| | | |___  | |___    | |   
+|_| |_|  \_| \_____/ |_____| \_____|   |_|   
+        \033[01;31m CRIADO: @FENIX_LINUX \033[0m
+
+"
 }
 banner
    if [[ -d /etc/proxy-socks/info-users ]]; then
@@ -133,25 +138,24 @@ main () {
 veri_443
 statusproxy2
 echo -e ""
-echo -e "\033[01;35m ESCOLHA UMA OPÇAO [01-09] \033[0m"
+echo -e "\033[01;35m ESCOLHA UMA OPÇAO [01-08] \033[0m"
 
-echo -e "$b======================[$v"Menu"$b]========================"
-op 01 "\033[01;37;42m ALTERAR MENSAGEM DE ERRO                       " "\033[0m" $(echo -e "$b($v"403 Erro"$b)")           
-op 02 "\033[01;37;42m ALTERAR MENSAGEM DE SUCESSO                    " "\033[0m" $(echo -e "$b($v"200 Ok"$b)")         
-op 03 "\033[01;37;42m PARAR/INICIAR PROXY-SOCKS                      " "\033[0m" $(echo -e "$b($v$statusproxy$b)")       
-op 04 "\033[01;37;42m VER USUARIOS CRIADO                            "                                      "\033[0m"
-op 05 "\033[01;37;42m CRIAR USUARIOS                                 "                                      "\033[0m"
-op 06 "\033[01;37;42m DELETAR USUARIOS                               "                                      "\033[0m"
-op 07 "\033[01;37;42m MONITOR SSH                                    "                                      "\033[0m"
-op 08 "\033[01;37;42m MAIS OPCOES                                    "                                      "\033[0m"
-op 09 "\033[01;37;42m SAIR                                           "                                      "\033[0m"                                                                                              
-echo -e "$b======================[$v"Menu"$b]========================"
+echo -e "\033[04;01;31m======================[$v"Menu"\033[04;31m]========================\033[0m"
+op 01 "\033[01;37;42m ALTERAR MENSAGEM DE ERRO                     " "\033[0m" $(echo -e "$b($v"403 Erro"$b)")           
+op 02 "\033[01;37;42m ALTERAR MENSAGEM DE SUCESSO                  " "\033[0m" $(echo -e "$b($v"200 Ok"$b)")         
+op 03 "\033[01;37;42m PARAR/INICIAR PROXY-SOCKS                    " "\033[0m" $(echo -e "$b($v$statusproxy$b)")       
+op 04 "\033[01;37;42m VER USUARIOS CRIADO                          "                                      "\033[0m"
+op 05 "\033[01;37;42m CRIAR USUARIOS                               "                                      "\033[0m"
+op 06 "\033[01;37;42m DELETAR USUARIOS                             "                                      "\033[0m"
+op 07 "\033[01;37;42m MONITOR SSH                                  "                                      "\033[0m"
+op 08 "\033[01;37;42m SAIR                                         "                                      "\033[0m"                                                                                              
+echo -e "\033[04;01;31m======================[$v"Menu"\033[04;31m]========================\033[0m"
 echo -e "\033[01;37;36m"
 read -p "Escolha uma opcao : " option
 echo -e "\033[0m"
- while [ "$option" != 01 -o "$option" != 1 -o "$option" != 02 -o "$option" != 2 -o "$option" != 03 -o "$option" != 3 -o "$option" != 04 -o "$option" != 4 -o "$option" != 05 -o "$option" != 5 -o "$option" != 06 -o "$option" != 6 -o "$option" != 07 -o "$option" != 7 -o "$option" != 08 -o "$option" != 8 -o "$option" != 09 -o "$option" != 09 ]
+ while [ "$option" != 01 -o "$option" != 1 -o "$option" != 02 -o "$option" != 2 -o "$option" != 03 -o "$option" != 3 -o "$option" != 04 -o "$option" != 4 -o "$option" != 05 -o "$option" != 5 -o "$option" != 06 -o "$option" != 6 -o "$option" != 07 -o "$option" != 7 -o "$option" != 08 -o "$option" != 8 ]
  do
-   if [[ $option = 01 ||$option = 1 ||$option = 02 ||$option = 2 ||$option = 03 ||$option = 3 ||$option = 04 ||$option = 4 ||$option = 05 ||$option = 5 ||$option = 06 ||$option = 6 ||$option = 07 ||$option = 7 ||$option = 08 ||$option = 8 ||$option = 09 ||$option = 09 ]]; then
+   if [[ $option = 01 ||$option = 1 ||$option = 02 ||$option = 2 ||$option = 03 ||$option = 3 ||$option = 04 ||$option = 4 ||$option = 05 ||$option = 5 ||$option = 06 ||$option = 6 ||$option = 07 ||$option = 7 ||$option = 08 ||$option = 8 ]]; then
 
 if [[ "$option" = "01" || "$option" = "1" ]]; then
 echo -e "$b===============[$v"MENSAGEM$Ver ERRO"$b]==============="
@@ -167,9 +171,11 @@ echo -e "$b===============[$v"MENSAGEM$Ver ERRO"$b]==============="
    screen -dmS screen python3 /etc/proxy-socks/proxy.py 8080
    screen -dmS screen python3 /etc/proxy-socks/proxy.py 8799 
   screen -dmS screen python3 /etc/proxy-socks/proxy.py 3128 
+	echo -e "\033[01;37;36m"
   echo -e "Proxy-socks ativo nas portas: 8080,80,3128,8799"
-  echo -e "Pronto, proxy-socks estÃ¡ com a mensagem de erro $msg1"
+  echo -e "Pronto, proxy-socks esta com a mensagem de erro $msg1"
   read -p 'Enter continuar...'  enter
+	echo -e "\033[0m"
   main
 fi
 if [[ "$option" = "2" || "$option" = "2" ]]; then
@@ -354,14 +360,7 @@ clear
  main
  fi
  
-  if [[ "$option" = 08 || "$option" = 9 ]]; then
-     echo -e "EstÃ¡ opcao estara disponivel na v3 desse script"
-     read -p "Enter continuar..." enter
-     clear
-     main
-   fi
-
-if [[ "$option" = "09"  ]]; then
+if [[ "$option" = "08" || "$option" = "8"   ]]; then
 echo -e "$b===================[$v"SAIR"$b]===================="
    echo -e "Saindo..."
    sleep 1
