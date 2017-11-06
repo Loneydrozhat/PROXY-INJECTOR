@@ -1,4 +1,3 @@
-
 #!/bin/bash
 clear
 clear
@@ -367,7 +366,9 @@ echo -e "$b===================[$v"SAIR"$b]===================="
    exit
 fi
 else
-read -p "Escolha uma opcao: " option
+echo -e "\033[01;37;36m"
+read -p "Escolha uma opcao VALIDA: " option
+echo -e "\033[0m"
 fi
 done
 }
