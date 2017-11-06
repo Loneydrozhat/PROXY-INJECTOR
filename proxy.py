@@ -21,10 +21,8 @@ import subprocess
 subprocess.call("clear",shell=True)
 
 server = "127.0.0.1"
-msg1="OK"
-msg2="ERROR"
-msg3 = '<font color="red"> msg1 </font>'
-msg4 = '<font color="red"> msg2 </font>'
+msg1 = 'SOCKET OK'
+msg2 = 'Erro, Proxy nao eh publico'
 class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
 
     address_family = socket.AF_INET
@@ -75,7 +73,7 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
         except socket.error:
             return
 
-        self.send_response(200, msg3)
+        self.send_response(200, msg1)
         self.send_header('Connection', 'close')
         self.end_headers()
 
@@ -83,7 +81,7 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
         keep_connection = True
         while keep_connection:
             if not server.find(hostip) != -1:
-                self.send_error(403, msg4)
+                self.send_error(403, ms2)
                 self.close_connection
             keep_connection = False
             rlist, wlist, xlist = select.select(conns, [], conns, self.timeout)
