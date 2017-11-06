@@ -7,45 +7,83 @@ if readlink /proc/$$/exe | grep -qs "dash"; then
 	exit 1
 fi
 
-if [[ "$EUID" -ne 0 ]]; then
-	echo -e "\033[01;31m Desculpa Voce nao e Usuario root \033[0m"
-	exit 2
+if [ "x$(id -u)" != 'x0' ]; then
+clear
+    echo -e '
+\033[01;31m O SCRIPT \033[01;32m INJECT \033[01;31m DEVE SER EXECUTADO COM PERMISSOES \033[01;35m  ROOT 
+\033[01;32m UTILIZE O COMANDO \033[01;35m sudo su \033[01;32m OU \033[01;35m login root \033[0m	
+'
+echo -e "\033[01;31m"
+read -p 'aperte Enter para continuar...'  enter
+echo -e "\033[0m	"
+clear 
+clear
+
+    exit 1
 fi
 
 if grep -qs "CentOS release 5" "/etc/redhat-release"; then
 	echo -e "\033[01;31m CentOS5 Nao e suportado \033[0m"
 	exit 4
 fi
-echo -e "\033[01;37;32m 
-  ;; INICIANDO A INSTALAÇAO   ;; "
-pacote=$(dpkg --get-selections | grep squid3 )
-pacote2=$(dpkg --get-selections | grep screen )
-if [ -n "$pacote" ] ; then 
-echo -e "\033[01;32m 
-  ;; O SQUID3 ESTA INSTALADO  ;; "
-else
-apt-get install squid3 > /dev/null
-echo -e "\033[01;32m 
-  ;; O SQUID3 FOI INSTALADO   ;; "
-fi
-if [ -n "$pacote2" ] ; then 
-echo -e "\033[01;32m 
-  ;; O SCREEN ESTA INSTALADO  ;; "
-else
-apt-get install screen > /dev/null
-echo -e "\033[01;32m 
-  ;; O SCREEN FOI INSTALADO   ;; "
-fi
-rm /usr/local/bin/socks
-rm /bin/socks
-wget  https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh > /dev/null
-mv proxy-injector.sh /usr/local/bin/socks
-wget  https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh > /dev/null
-mv proxy-injector.sh /bin/socks
-chmod +x /usr/local/bin/socks
-chmod +x /bin/socks
-echo -e "\033[01;32m 
-  ;; INICIANDO A CONFIGURAÇAO ;; "
-  sleep 2
-socks
+clear
 
+echo -e "
+---------\033[37m[\033[01;32mINSTALATION\033[37m]---------
+\033[31m ❞ ACEITANDO A INSTALAÇAO VOCE ESTARA ACEITANDO: ❞
+
+\033[32m ✔ →  A RECONFIGURAÇAO COMPLETA DO SQUID3
+\033[32m ✔ →  A INSTALAÇAO DO SISTEMA HTTP - SOCKS
+\033[32m ✔ →  A RETRIÇAO AO USO DE PAYLOAD CONVENCIONAIS \033[0m
+
+---------\033[37m[\033[01;32mINSTALATION\033[37m]--------- \033[0m "
+
+echo -e "\033[01;35m"
+read -p "CONTINUAR INSTALAÇAO [sim - nao] " option
+echo -e "\033[0m"
+
+if [[ "$option" = "sim" ]]; then
+       clear
+       pacote=$(dpkg --get-selections | grep squid3 )
+       pacote2=$(dpkg --get-selections | grep screen )
+       pacote3=$(dpkg --get-selections | grep python )
+       apt-get purge squid3 -y &>/dev/null
+       rm -rf /etc/squid3
+       if [ -n "$pacote" ] ; then 
+           echo -e "\033[01;32m SQUID3 ✔ \033[0m "
+       else
+           apt-get install squid3 > /dev/null
+           echo -e "\033[01;32m SQUID3 ✔ \033[0m "
+       fi
+       if [ -n "$pacote2" ] ; then 
+           echo -e "\033[01;32m screen ✔ \033[0m "
+       else
+           apt-get install screen > /dev/null
+           echo -e "\033[01;32m screen ✔ \033[0m "
+       fi
+       if [ -n "$pacote3" ] ; then 
+           echo -e "\033[01;32m python ✔ \033[0m "
+       else
+           apt-get install python > /dev/null
+           echo -e "\033[01;32m python ✔ \033[0m"
+       fi
+           rm /bin/inject &>/dev/null
+           rm -rf /etc/proxy-socks/info-users &>/dev/null
+           rm -rf /etc/proxy-socks &>/dev/null
+           wget -O /bin/inject -o /dev/null https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh
+           chmod +x /bin/inject
+			 sleep 3
+			 clear
+			 echo -e "\033[01;32mCOMANDO PARA USO : \033[01;31m  inject \033[01;32m"
+			 read -p "INSTALADO COM SUCESSO [aperte enter para continuar] : " enter
+			 echo -e "\033[0m"
+			 clear
+fi
+if [[ "$option" = "nao" ]]; then
+   clear
+   echo -e "
+	 \033[01;31m INSTALAÇAO CANCELADA [...] \033[0m
+	 "
+	 sleep 3
+	 clear
+fi
