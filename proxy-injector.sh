@@ -92,10 +92,9 @@ IPPRO=$(cat /etc/proxy-socks/proxy.py|grep "server =" | awk {'print $3'})
 sed -i "s/server = $IPPRO/server = '$IP'/" /etc/proxy-socks/proxy.py
 echo -e "Iniciando proxy-socks..."
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 80
-screen -dmS screen python3 /etc/proxy-socks/proxy.py 8080
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 8799 
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 3128 
-echo -e "Proxy-socks ativo nas portas: 8080,80,3128,8799"
+echo -e "Proxy-socks ativo nas portas: 80,3128,8799"
 fi
 statusproxy2 () {
 if ps x | grep proxy.py|grep -v grep 1>/dev/null 2>/dev/null; then
@@ -136,18 +135,17 @@ banner
 main () {
 veri_443
 statusproxy2
-echo -e ""
 echo -e "\033[01;35m ESCOLHA UMA OPÇAO [01-08] \033[0m"
-
 echo -e "\033[04;01;31m======================[$v"Menu"\033[04;31m]========================\033[0m"
-op 01 "\033[01;37;42m ALTERAR MENSAGEM DE ERRO                     " "\033[0m" $(echo -e "$b($v"403 Erro"$b)")           
-op 02 "\033[01;37;42m ALTERAR MENSAGEM DE SUCESSO                  " "\033[0m" $(echo -e "$b($v"200 Ok"$b)")         
-op 03 "\033[01;37;42m PARAR/INICIAR PROXY-SOCKS                    " "\033[0m" $(echo -e "$b($v$statusproxy$b)")       
-op 04 "\033[01;37;42m VER USUARIOS CRIADO                          "                                      "\033[0m"
-op 05 "\033[01;37;42m CRIAR USUARIOS                               "                                      "\033[0m"
-op 06 "\033[01;37;42m DELETAR USUARIOS                             "                                      "\033[0m"
-op 07 "\033[01;37;42m MONITOR SSH                                  "                                      "\033[0m"
-op 08 "\033[01;37;42m SAIR                                         "                                      "\033[0m"                                                                                              
+echo -e ""
+op 01 "\033[01;33m ALTERAR MENSAGEM DE ERRO                     " "\033[0m" $(echo -e "$b($v"403 Erro"$b)")  
+op 02 "\033[01;33m ALTERAR MENSAGEM DE SUCESSO                  " "\033[0m" $(echo -e "$b($v"200 Ok"$b)")
+op 03 "\033[01;33m PARAR/INICIAR PROXY-SOCKS                    " "\033[0m" $(echo -e "$b($v$statusproxy$b)")   
+op 04 "\033[01;33m VER USUARIOS CRIADO                          "                                      "\033[0m"
+op 05 "\033[01;33m CRIAR USUARIOS                               "                                      "\033[0m"
+op 06 "\033[01;33m DELETAR USUARIOS                             "                                      "\033[0m"
+op 07 "\033[01;33m MONITOR SSH                                  "                                      "\033[0m"
+op 08 "\033[01;33m SAIR                                         "                                      "\033[0m"                                                                                              
 echo -e "\033[04;01;31m======================[$v"Menu"\033[04;31m]========================\033[0m"
 echo -e "\033[01;37;36m"
 read -p "Escolha uma opcao : " option
@@ -363,12 +361,11 @@ if [[ "$option" = "08" || "$option" = "8"   ]]; then
 echo -e "$b===================[$v"SAIR"$b]===================="
    echo -e "Saindo..."
    sleep 1
+	 clear
    exit
 fi
 else
-echo -e "\033[01;37;36m"
-read -p "Escolha uma opcao VALIDA: " option
-echo -e "\033[0m"
+read -p "Escolha uma opcao: " option
 fi
 done
 }
