@@ -10,18 +10,32 @@ b="\033[97m"
 v="\033[92m"
 Ver="\033[91m"
 am="\033[93m"
+if [ "x$(id -u)" != 'x0' ]; then
+clear
+    echo -e '
+\033[01;31m O SCRIPT \033[01;32m INJECT \033[01;31m DEVE SER EXECUTADO COM PERMISSOES \033[01;35m  ROOT 
+\033[01;32m UTILIZE O COMANDO \033[01;35m sudo su \033[01;32m OU \033[01;35m login root \033[0m	
+'
+echo -e "\033[01;31m"
+read -p 'aperte Enter para continuar...'  enter
+echo -e "\033[0m	"
+clear 
+clear
+
+    exit 1
+fi
  if [[ -d /etc/squid ]]; then
     if [[ -f /etc/squid/squid.conf ]];then
      mv /etc/squid/squid.conf /etc/squid/squid.conf.old
      echo -e "squid instalado!"
      sleep 0.5
-     echo -e "Parando squid..."
+     echo -e "\033[01;31m Parando squid..."
      service squid stop 2>/dev/null
     fi
 if [[ -f /usr/bin/screen ]]; then
 true
 else
-echo -e "Instalando screen..."
+echo -e "\033[01;31m Instalando screen..."
     if apt-get install screen -y 1>/dev/null 2>/dev/null; then
          true
     else
@@ -32,9 +46,9 @@ echo -e "Instalando screen..."
  if [[ -d /etc/squid3 ]]; then
      if [[ -f /etc/squid3/squid.conf ]];then
      mv /etc/squid3/squid.conf /etc/squid3/squid.conf.old
-     echo -e "squid3 instalado!"
+     echo -e "\033[01;32m squid3 instalado!"
      sleep 0.5
-     echo -e "Parando squid3..."
+     echo -e "\033[01;31m Parando squid3..."
      service squid stop 2>/dev/null
     fi
  fi
@@ -48,16 +62,16 @@ if [[ -d /etc/proxy-socks ]]; then
  if [[ -f /etc/proxy-socks/proxy.py ]]; then
   true
  else
- echo -e "\033[01;32m ✔ Instalando proxy-socks..."
+ echo -e "\033[01;31m ✔ Instalando proxy-socks..."
  apt-get update 1>/dev/null 2>/dev/null
   wget -qO- /dev/null https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy.py > /etc/proxy-socks/proxy.py
   sleep 1
 IP=$(wget -4qO- "http://whatismyip.akamai.com/")
 echo -e "\033[01;32m"
-read -p "Confirme seu IP: " -e -i $IP IP
+read -p " Confirme seu IP: " -e -i $IP IP
 echo -e "\033[0m"
 if [[ -z "$IP" ]];then
-echo -e "IP invalido"
+echo -e "\033[01;31m IP invalido"
 sleep 1
 echo -e "\033[01;32m"
 read -p "Digite seu IP: " IP
@@ -67,7 +81,7 @@ IPPRO=$(cat /etc/proxy-socks/proxy.py|grep "server =" | awk {'print $3'})
 sed -i "s/server = $IPPRO/server = '$IP'/" /etc/proxy-socks/proxy.py
 sleep 1
 echo -e "\033[01;32m"
-echo -e "Iniciando proxy-socks..."
+echo -e "\033[01;32m Iniciando proxy-socks..."
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 80
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 8080
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 8799 
@@ -76,25 +90,32 @@ echo -e "Proxy-socks ativo nas portas: /033[01;31m  8080,80,3128,8799"
 echo -e "\033[0m"
  fi
 else
-echo -e "Instalando proxy-socks..."
+echo -e "\033[01;32m ✔ Instalando proxy-socks..."
 apt-get update 1>/dev/null 2>/dev/null
 mkdir /etc/proxy-socks
 wget -qO- /dev/null https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy.py> /etc/proxy-socks/proxy.py
 IP=$(wget -4qO- "http://whatismyip.akamai.com/")
+echo -e "\033[01;32m"
 read -p "Confirme seu IP: " -e -i $IP IP
+echo -e "\033[0m"
 if [[ -z "$IP" ]];then
-echo -e "IP invalido"
+echo -e "\033[01;31m IP invalido"
 sleep 1
+echo -e "\033[01;32m"
 read -p "Digite seu IP: " IP
+echo -e "\033[0m"
 fi
 sleep 1
 IPPRO=$(cat /etc/proxy-socks/proxy.py|grep "server =" | awk {'print $3'})
 sed -i "s/server = $IPPRO/server = '$IP'/" /etc/proxy-socks/proxy.py
-echo -e "Iniciando proxy-socks..."
+echo -e "\033[01;32m Iniciando proxy-socks..."
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 80
+screen -dmS screen python3 /etc/proxy-socks/proxy.py 8080
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 8799 
 screen -dmS screen python3 /etc/proxy-socks/proxy.py 3128 
-echo -e "Proxy-socks ativo nas portas: 80,3128,8799"
+echo -e "\033[01;32m Proxy-socks ativo nas portas: 80,8080,3128,8799"
+sleep 3 
+clear
 fi
 statusproxy2 () {
 if ps x | grep proxy.py|grep -v grep 1>/dev/null 2>/dev/null; then
