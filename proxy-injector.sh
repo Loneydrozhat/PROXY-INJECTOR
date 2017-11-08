@@ -1,7 +1,6 @@
 #!/bin/bash
 clear
 clear
-versao=3.9
 clear
 op() {
 echo -e "\033[97m[\033[92m$1\033[97m]\033[91m $2 $3 $4 $5 $6 $7\033[97m"
