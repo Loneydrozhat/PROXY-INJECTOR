@@ -4,7 +4,7 @@ Instalador : HTTP SOCKET/SOCKS  PROXY , PARA HTTP-INJECTOR/EPROXY && OPENVPN
 
 EXECUTE O COMANDO EM SEU SERVIDOR DEBIAN OU UBUNTU COMO USUARIO ROOT OU ACESSO SUDOERS FILE:
 
-&#x1F535; bash <(curl -L -Ss https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/install) &#x1F535;
+&#x1F535; bash <(curl -L -Ss https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh) &#x1F535;
 
 <h4>AGUARDE A FINALIZAÇAO</h4>
 <h4>E EXECUTE O COMANDO <h2 color="blue">( INJECT )</h2></h4>
