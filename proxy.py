@@ -21,8 +21,8 @@ import subprocess
 subprocess.call("clear",shell=True)
 
 server = "127.0.0.1"
-font= ' ' '
-endfont = ' ' '
+font= '
+endfont = '
 msg1 = 'SOCKET OK'
 msg2 = 'Erro, Proxy nao eh publico'
 class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
