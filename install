@@ -44,6 +44,7 @@ echo -e "\033[0m"
 
 if [[ "$option" = "sim" ]]; then
        clear
+       apt-get update && apt-get upgrade -y > /dev/null
        pacote=$(dpkg --get-selections | grep squid3 )
        pacote2=$(dpkg --get-selections | grep screen )
        pacote3=$(dpkg --get-selections | grep python )
@@ -71,7 +72,7 @@ if [[ "$option" = "sim" ]]; then
            rm -rf /etc/proxy-socks/info-users &>/dev/null
            rm -rf /etc/proxy-socks &>/dev/null
            wget -O /bin/inject -o /dev/null https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh
-           chmod +x /bin/inject/
+           chmod +x /bin/inject
 			 sleep 3
 			 clear
 			 echo -e "\033[01;32mCOMANDO PARA USO : \033[01;31m  inject \033[01;32m"
