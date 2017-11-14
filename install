@@ -52,26 +52,26 @@ if [[ "$option" = "sim" ]]; then
        if [ -n "$pacote" ] ; then 
            echo -e "\033[01;32m SQUID3 ✔ \033[0m "
        else
-           apt-get install squid3 > /dev/null
+           apt-get install squid3 -y > /dev/null
            echo -e "\033[01;32m SQUID3 ✔ \033[0m "
        fi
        if [ -n "$pacote2" ] ; then 
            echo -e "\033[01;32m screen ✔ \033[0m "
        else
-           apt-get install screen > /dev/null
+           apt-get install screen -y > /dev/null
            echo -e "\033[01;32m screen ✔ \033[0m "
        fi
        if [ -n "$pacote3" ] ; then 
            echo -e "\033[01;32m python ✔ \033[0m "
        else
-           apt-get install python > /dev/null
+           apt-get install python -y > /dev/null
            echo -e "\033[01;32m python ✔ \033[0m"
        fi
            rm /bin/inject &>/dev/null
            rm -rf /etc/proxy-socks/info-users &>/dev/null
            rm -rf /etc/proxy-socks &>/dev/null
            wget -O /bin/inject -o /dev/null https://raw.githubusercontent.com/fenixtm/PROXY-INJECTOR/master/proxy-injector.sh
-           chmod +x /bin/inject
+           chmod +x /bin/inject/
 			 sleep 3
 			 clear
 			 echo -e "\033[01;32mCOMANDO PARA USO : \033[01;31m  inject \033[01;32m"
