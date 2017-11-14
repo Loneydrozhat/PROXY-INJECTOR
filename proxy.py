@@ -21,6 +21,10 @@ import subprocess
 subprocess.call("clear",shell=True)
 
 server = "127.0.0.1"
+font = '<font color="red">'
+fontend = '</font>'
+opensource = " ' "
+conectfor = opensource + font + fontend + opensource
 msg1 = 'SOCKET OK'
 msg2 = 'Erro, Proxy nao eh publico'
 class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
@@ -73,7 +77,7 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
         except socket.error:
             return
 
-        self.send_response(200, msg1  )
+        self.send_response(200, conectfor  )
         self.send_header('Connection', 'close')
         self.end_headers()
 
