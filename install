@@ -44,7 +44,8 @@ echo -e "\033[0m"
 
 if [[ "$option" = "sim" ]]; then
        clear
-       apt-get update && apt-get upgrade -y > /dev/null
+       apt-get update -y &>/dev/null && apt-get upgrade -y &>/dev/null
+       clear
        pacote=$(dpkg --get-selections | grep squid3 )
        pacote2=$(dpkg --get-selections | grep screen )
        pacote3=$(dpkg --get-selections | grep python )
@@ -53,19 +54,19 @@ if [[ "$option" = "sim" ]]; then
        if [ -n "$pacote" ] ; then 
            echo -e "\033[01;32m SQUID3 ✔ \033[0m "
        else
-           apt-get install squid3 -y > /dev/null
+           apt-get install squid3 -y &>/dev/null
            echo -e "\033[01;32m SQUID3 ✔ \033[0m "
        fi
        if [ -n "$pacote2" ] ; then 
            echo -e "\033[01;32m screen ✔ \033[0m "
        else
-           apt-get install screen -y > /dev/null
+           apt-get install screen -y &>/dev/null
            echo -e "\033[01;32m screen ✔ \033[0m "
        fi
        if [ -n "$pacote3" ] ; then 
            echo -e "\033[01;32m python ✔ \033[0m "
        else
-           apt-get install python -y > /dev/null
+           apt-get install python -y &>/dev/null
            echo -e "\033[01;32m python ✔ \033[0m"
        fi
            rm /bin/inject &>/dev/null
@@ -76,7 +77,7 @@ if [[ "$option" = "sim" ]]; then
 			 sleep 3
 			 clear
 			 echo -e "\033[01;32mCOMANDO PARA USO : \033[01;31m  inject \033[01;32m"
-			 read -p "INSTALADO COM SUCESSO [aperte enter para continuar] : " enter
+			 read -p "instalador com sucesso , aperte enter para continuar... " enter
 			 echo -e "\033[0m"
 			 clear
 fi
