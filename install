@@ -45,9 +45,8 @@ echo -e "\033[0m"
 if [[ "$option" = "sim" ]]; then
        clear
        echo -e "\033[01;33m[+] Aguarde A atualizaçao de pacotes"
-       sleep 2
-       apt-get update -y &>/dev/null && apt-get upgrade -y &>/dev/null
-       clear
+       apt-get update -y &>/dev/null 
+       apt-get upgrade -y &>/dev/null
        pacote=$(dpkg --get-selections | grep squid3 )
        pacote2=$(dpkg --get-selections | grep screen )
        pacote3=$(dpkg --get-selections | grep python )
