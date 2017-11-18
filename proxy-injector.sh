@@ -24,12 +24,20 @@ clear
     exit 1
 fi
  if [[ -d /etc/squid ]]; then
+    echo "\033[01;31mdeseja parar o squid? (squid pode causar conflito de portas"
+    read -p "SIM-NAO" squidop
+    if [[ "$squidop" = "sim" ]]; then
     if [[ -f /etc/squid/squid.conf ]];then
      mv /etc/squid/squid.conf /etc/squid/squid.conf.old
      echo -e "squid instalado!"
      sleep 0.5
      echo -e "\033[01;31m Parando squid..."
      service squid stop 2>/dev/null
+    fi
+    else 
+    echo "\033[01:32mCONTINUANDO"
+    sleep 2
+    clear
     fi
 if [[ -f /usr/bin/screen ]]; then
 true
