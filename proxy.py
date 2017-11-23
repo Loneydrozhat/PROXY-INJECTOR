@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # -*- coding: utf-8 -*-
-# Edit By GlEmYsSoN
+# Edit By FENIXTM
 
 from pprint import pprint
 import sys
