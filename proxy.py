@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 # -*- coding: utf-8 -*-
-# Edit By FENIXTM
+# Edit By @FENIXTM -- http://t.me/Fenix_linux
+# http://pikeno.ga
 
 from pprint import pprint
 import sys
@@ -21,8 +22,14 @@ import subprocess
 subprocess.call("clear",shell=True)
 
 server = "127.0.0.1"
-msg1 = 'SOCKS'
-msg2 = 'Erro, Proxy nao eh publico'
+msg1 = 'ALTERE NO MENU ( INJECT )'
+msg2 = 'OK'
+purple = '<font color="purple">'
+red = '<font color="red">'
+endfont = "</font>"
+conectok = purple + msg1 + endfont
+conecterror = red + msg2 + endfont
+
 class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
 
     address_family = socket.AF_INET
@@ -73,7 +80,7 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
         except socket.error:
             return
 
-        self.send_response(200, msg1)
+        self.send_response(200, conectok )
         self.send_header('Connection', 'close')
         self.end_headers()
 
@@ -81,7 +88,7 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
         keep_connection = True
         while keep_connection:
             if not server.find(hostip) != -1:
-                self.send_error(403, msg2)
+                self.send_error(403, conecterror )
                 self.close_connection
             keep_connection = False
             rlist, wlist, xlist = select.select(conns, [], conns, self.timeout)
