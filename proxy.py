@@ -23,7 +23,7 @@ subprocess.call("clear",shell=True)
 
 server = "127.0.0.1"
 msg1 = 'ALTERE NO MENU ( INJECT )'
-msg2 = 'OK'
+msg2 = 'ERROR proxy nao publico'
 purple = '<font color="purple">'
 red = '<font color="red">'
 endfont = "</font>"
