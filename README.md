@@ -1,7 +1,7 @@
 # PROXY INJECTOR
 Instalador : HTTP SOCKET/SOCKS  PROXY , PARA HTTP-INJECTOR/EPROXY && OPENVPN
 
-![alt text](https://image.prntscr.com/image/c1IHBKb_R_KYKSOeVSXG4g.png)
+![alt text](https://github.com/fenixtm/PROXY-INJECTOR/raw/master/img/inject_img.png)
 
 EXECUTE O COMANDO EM SEU SERVIDOR DEBIAN OU UBUNTU COMO USUARIO ROOT OU ACESSO SUDOERS FILE:
 
